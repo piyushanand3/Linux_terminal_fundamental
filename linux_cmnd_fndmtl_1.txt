@@ -1,6 +1,6 @@
 -:linux cmnd:-
 BASICS:-$
-*hostname   - Display hostname of the system.GoalKicker.com – Linux® Notes for Professionals 6
+*hostname   - Display hostname of the system.GoalKicker.com â€“ LinuxÂ® Notes for Professionals 6
 *hostname -f- Displays Fully Qualified Domain Name (FQDN) of the system.
 *passwd     - Change password of current user.
 *whoami     - Username of the users logged in at the terminal.
@@ -11,8 +11,8 @@ BASICS:-$
 *lastb      - Shows all bad login attempts into the system.
 *cal        - show calendar
 *time       - show time
-*lsb_release -a -Detect what debian-based distribution you are working in.
-*/etc/os-release
+*lsb_release -a  'or'  */etc/os-release  
+            -Detect what debian-based distribution you are working in.
 *info       - to show directory node.(useful)
 *df -h      - to show the disk uses and available of disk space.
 =========================================================================================================================================================
@@ -260,12 +260,12 @@ ubuntu@DESKTOP-5REVBEP:*$ ls dir3
 ubuntu@DESKTOP-5REVBEP:*$ tree
 .
 +-- 1
-¦   +-- 1.text
-¦   +-- 1.text.copy
+Â¦Â Â  +-- 1.text
+Â¦Â Â  +-- 1.text.copy
 +-- dir3
-¦   +-- 1
-¦       +-- 1.text
-¦       +-- 1.text.copy
+Â¦Â Â  +-- 1
+Â¦Â Â      +-- 1.text
+Â¦Â Â      +-- 1.text.copy
 +-- piyush
     +-- 1
         +-- 1.text
