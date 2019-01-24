@@ -22,7 +22,6 @@ Process related information:-
               #change the refresh rate by s and put the value by 1/2/3.. sec.
               #show ideal process press "i".
               #to kill any process press "k" and tpye PID(process_id) no.
-*
 *pid        - #$pidof "name_of_process." [to know anyprocess PID]
               #$kill "PID_no." [to kill it]
               #$kill -KILL "PID_no." [forcefully kill the process.]
@@ -138,8 +137,6 @@ ls:-
     long listing.]
 ##EXAMPLE:-
 ********************************************************************************************************************************************************* 
-bin   dev  home  lib    media  opt   root  sbin  srv  tmp  var
-boot  etc  init  lib64  mnt    proc  run   snap  sys  usr
 ubuntu@DESKTOP-5REVBEP:/$ ls -l
 total 112
 drwxr-xr-x  1 root root   4096 Jan 10 14:56 bin
