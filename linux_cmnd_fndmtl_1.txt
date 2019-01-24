@@ -1,0 +1,369 @@
+-:linux cmnd:-
+BASICS:-$
+*hostname   - Display hostname of the system.GoalKicker.com – Linux® Notes for Professionals 6
+*hostname -f- Displays Fully Qualified Domain Name (FQDN) of the system.
+*passwd     - Change password of current user.
+*whoami     - Username of the users logged in at the terminal.
+*who        - List of all the users currently logged in as a user.
+*w          - Display current system status, time, duration, list of users currently logged in on system and other user information.
+*last       - Who recently used the system.
+*last root  - When was the last time root logged in as user.
+*lastb      - Shows all bad login attempts into the system.
+*cal        - show calendar
+*time       - show time
+*lsb_release -a -Detect what debian-based distribution you are working in.
+*/etc/os-release
+*info       - to show directory node.(useful)
+*df -h      - to show the disk uses and available of disk space.
+=========================================================================================================================================================
+Process related information:-
+*top        - List all processes sorted by their current system resource usage. Displays a continually updated display of processes (By default 3 seconds).
+              Use q key to exit top.
+              #change the refresh rate by s and put the value by 1/2/3.. sec.
+              #show ideal process press "i".
+              #to kill any process press "k" and tpye PID(process_id) no.
+*
+*pid        - #$pidof "name_of_process." [to know anyprocess PID]
+              #$kill "PID_no." [to kill it]
+              #$kill -KILL "PID_no." [forcefully kill the process.]
+              #$kill -9 "PID_no." [alternative of the above cmnd.] 
+*ps         - List processes currently running on current shell session
+*ps -u root - List all of the processes and commands root is running
+*ps aux     - List all the processes by all users on the current system.
+*find       - to find anything any anywhere in system.
+              #$find "directory" -name "filename/filename.*/*.Extension." [with this cmnd find anything.]
+              #$find "directory" -mtime -"days_in_no." [find any file created some days ago without having filename.]
+*uname "options"- Uname is the short name for unix name. 
+                -a, --Prints all information.
+                -s, --kernel-name Print the kernel name.
+                -n, --nodename Print the network node hostname.
+                -r, --kernel-release Print the kernel release.
+                -v, --kernel-version Print the kernel version.
+                -m, --machine Print the machine hardware name.
+                -p, --processor Print the processor type, or "unknown".
+                -i, --hardware-platform Print the hardware platform, or "unknown".
+                -o, --operating-system Print the operating system.
+                --help Display a help message, and exit.
+                --version Display version information, and exit.
+=========================================================================================================================================================
+File/directory permissions and groups:-
+*chmod <specification> filename                   - Change the file permissions. Specifications = u user, g group, o other, + add permission, - remove,
+                                                    r read, w write,x execute.
+*chmod -R <specification> dirname                 - Change the permissions of a directory recursively. To change permission of a directory and everything
+                                                    within that directory, use this command.
+*chmod go=+r                                      - myfile Add read permission for the owner and the group.
+*chmod a +rwx                                     - myfile Allow all users to read, write or execute myfile.
+*chmod go -r                                      - myfile Remove read permission from the group and others.
+*chown owner1 filename                            - Change ownership of a file to user owner1.
+*chgrp grp_owner filename                         - Change primary group ownership of file filename to group grp_owner. 
+*chgrp -R grp_owner dir-name                      - Change primary group ownership of directory dir-name to group grp_owner
+                                                    recursively. To change group ownership of a directory and everything within
+                                                    that directory, use this command.
+ r -right, w -write/modified, x -execute
+*The permissions are in format of drwxrwxrwx.==>>d -directory,1st three rwx after d represent 'owner' ,2nd rwx represent 'group' and 3rd rwx represent 'other'.
+ To change rights you can use the $chmod "###" fileName.(with sudo permission.)
+*r=4 ,w=2 ,x=1 
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ Owner rwx = 4+2+1 = 7
+ Group r-x = 4+0+1 = 5
+ Other r-x = 4+0+1 = 5 
+*********************************************************************************************************************************************************
+
+*$chmod  u/g/o   +/-  r/w/x   'filename'           -to add or remove any permission to any user/group/other for any file.
+*$chmod a +rwx 'filename' or chmod 777 'filename'  -give all permission to all user.
+=========================================================================================================================================================
+1.man pages
+  >man $command
+   * $man whois [use it to known about any linux cmnd]
+  >man $configfile
+   * $man syslog.conf [use it to edit or configuration any file]
+  >man $daemon
+   * $man syslogd [use it for background program]
+  >man -k(apropos)
+   * $man -k syslog [shows a list of man pages containning a string.]
+  **to directly read any file from location use $man "file_location"
+  >man section:- inside the [* $man man] cmnd and find all 9 section in the given page
+   all section shown their own property and it is help us to understand man cmnd more accurate.
+   * $man $section $file
+  >* $mandb [doing some nonsense th16:14 14-01-2019at i can't understand write now.]
+
+  > whatis
+  * whatis mkdir[to see discription of a manual page]
+
+  > whereis
+  * whereis -m whois [to find the location of any man page.]
+=========================================================================================================================================================
+2.Working with directories
+  >* $pwd ["print working directories"show current working directory]
+   >* $pwd -L [print the symbolic path(no any change in $pwd & $pwl -L)]
+   >* $pwd -P [print the actual path(see target directory)]
+  >* $cd /home/paul ["change directory"]
+  >* $cd* [go back to home directory from anywhere]
+  >* $cd.. [go back 1 step back from the current directory]
+  >* $cd - [go to the previous use directory from current directory]
+Absolute and relative paths:-
+ When you type a path starting with a slash (/), then the root of the file tree is assumed.
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*$ pwd
+/home/ubuntu
+ubuntu@DESKTOP-5REVBEP:*$ cd ..
+ubuntu@DESKTOP-5REVBEP:/home$ cd ..
+ubuntu@DESKTOP-5REVBEP:/$ cd ubuntu
+-bash: cd: ubuntu: No such file or directory
+ubuntu@DESKTOP-5REVBEP:/$ cd /ubuntu
+-bash: cd: /ubuntu: No such file or directory
+ubuntu@DESKTOP-5REVBEP:/$ cd home
+ubuntu@DESKTOP-5REVBEP:/home$ cd ubuntu
+ubuntu@DESKTOP-5REVBEP:*$ pwd
+/home/ubuntu
+ubuntu@DESKTOP-5REVBEP:*$ cd piyush
+ubuntu@DESKTOP-5REVBEP:*/piyush$ pwd
+/home/ubuntu/piyush
+*********************************************************************************************************************************************************  
+ > path completion:-The tab key can help you in typing a path without errors. Typing cd /et followed by the tab
+   key will expand the command line to cd /etc/.
+
+ls:-
+ >* $ls [show list of all item of the current directory]
+ >* $ls --color [if file and folder output not colored then use it]
+ >* $ls -R [list subdirectories recursively]
+ >* $ls -F [differenciate b/w folder and files by simply putting "/" on directories ,"*" executables,"@" symbolic links]
+ >* $ls -s [list of file size]
+ >* $ls -S [sort by file size]
+ >* $ls -a [use to show all files,including the hidden files and when Linux file system starts with a dot, it is considered
+    a hidden file and it doesn't show up in regular file listings.]
+ >* $ls -l [Typing just ls gives you a list of files in the directory. Typing ls -l (that is a letter L, not the number 1) gives you a
+    long listing.]
+##EXAMPLE:-
+********************************************************************************************************************************************************* 
+bin   dev  home  lib    media  opt   root  sbin  srv  tmp  var
+boot  etc  init  lib64  mnt    proc  run   snap  sys  usr
+ubuntu@DESKTOP-5REVBEP:/$ ls -l
+total 112
+drwxr-xr-x  1 root root   4096 Jan 10 14:56 bin
+drwxr-xr-x  1 root root   4096 Jul 25 21:26 boot
+drwxr-xr-x  1 root root   4096 Jan 10 20:20 dev
+drwxr-xr-x  1 root root   4096 Jan 10 15:06 etc
+drwxr-xr-x  1 root root   4096 Jan  7 22:01 home
+-rwxr-xr-x  1 root root 112600 Jan  1  1970 init
+drwxr-xr-x  1 root root   4096 Jul 25 21:23 lib
+drwxr-xr-x  1 root root   4096 Jul 25 21:21 lib64
+drwxr-xr-x  1 root root   4096 Jul 25 21:20 media
+drwxr-xr-x  1 root root   4096 Jan  7 21:37 mnt
+drwxr-xr-x  1 root root   4096 Jul 25 21:20 opt
+dr-xr-xr-x 11 root root      0 Jan 10 20:20 proc
+drwx------  1 root root   4096 Jul 25 21:24 root
+drwxr-xr-x  1 root root   4096 Jan 10 20:20 run
+drwxr-xr-x  1 root root   4096 Jan 10 15:01 sbin
+drwxr-xr-x  1 root root   4096 Jul 19 15:35 snap
+drwxr-xr-x  1 root root   4096 Jul 25 21:20 srv
+dr-xr-xr-x 12 root root      0 Jan 10 20:20 sys
+drwxrwxrwt  1 root root   4096 Jan 10 15:08 tmp
+drwxr-xr-x  1 root root   4096 Jul 25 21:20 usr
+drwxr-xr-x  1 root root   4096 Jul 25 21:24 var
+*********************************************************************************************************************************************************
+  >*ls -lh[It shows the numbers (file sizes) in a more human
+    readable format."(like 4096 look there as 4KB)"]
+
+$ mkdir [make directory]
+  >* $mkdir -p [it help to make a multi layer directory from one cmnd ] 
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*$ pwd
+/home/ubuntu
+ubuntu@DESKTOP-5REVBEP:*$ mkdir -p 1/2/3
+ubuntu@DESKTOP-5REVBEP:*$ pwd
+/home/ubuntu
+ubuntu@DESKTOP-5REVBEP:*$ ls
+1  piyush
+ubuntu@DESKTOP-5REVBEP:*$ cd 1
+ubuntu@DESKTOP-5REVBEP:*/1$ ls
+2
+ubuntu@DESKTOP-5REVBEP:*/1$ cd 2
+ubuntu@DESKTOP-5REVBEP:*/1/2$ ls
+3
+ubuntu@DESKTOP-5REVBEP:*/1/2$ cd 3
+ubuntu@DESKTOP-5REVBEP:*/1/2/3$ pwd
+/home/ubuntu/1/2/3  
+*********************************************************************************************************************************************************   
+$ rmdir [remove directory]
+ >* $rmdir -p [And similar to the mkdir -p option, you can also use rmdir to recursively remove
+    directories.]
+
+3.working with files
+ >Files on Linux (or any Unix) are case sensitive. This means that FILE1 is different from
+  file1, and /etc/hosts is different from /etc/Hosts (the latter one does not exist on a typical Linux computer).
+ >Everything is a file:-
+  [A directory is a special kind of file, but it is still a (case sensitive!) file. Each terminal
+  window (for example /dev/pts/4), any hard disk or partition (for example /dev/sdb1) and
+  any process are all represented somewhere in the file system as a file. It will become clear
+  throughout this course that everything on Linux is a file.]
+ >* $file "file_name_with_extension" [The file utility determines the file type"Linux does not use extensions to determine the
+     file type"]
+ >* $touch "give_a _file_name"[create an empty file]
+ >* $touch -t "manually change the properties of the file"
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*$ touch piyu
+ubuntu@DESKTOP-5REVBEP:*$ ls
+1  piyu  piyush
+ubuntu@DESKTOP-5REVBEP:*$ ls -lh
+total 0
+drwxrwxrwx 1 ubuntu ubuntu 4.0K Jan 11 01:19 1
+**-rw-rw-rw- 1 ubuntu ubuntu    0 Jan 11 01:23 piyu
+drwxrwxrwx 1 ubuntu ubuntu 4.0K Jan 10 18:47 piyush
+ubuntu@DESKTOP-5REVBEP:*$ touch -t 199805100000 piyu
+ubuntu@DESKTOP-5REVBEP:*$ ls -lh
+total 0
+drwxrwxrwx 1 ubuntu ubuntu 4.0K Jan 11 01:19 1
+**-rw-rw-rw- 1 ubuntu ubuntu    0 May 10  1998 piyu
+drwxrwxrwx 1 ubuntu ubuntu 4.0K Jan 10 18:47 piyush
+*********************************************************************************************************************************************************
+ >* $rm [remove forever,When you no longer need a file, use rm to remove it.When
+    you use rm to remove a file, the file is gone and no way to recover it so use with care"WARNING !!"]
+ >* $rm -i [To prevent yourself from accidentally removing a file "use this to remove anything in daily use it give a option before remove the file here 
+            i stand for intaractive"]
+ >* $rm -rf ["$rm -r" will not remove non-empty directories,rm -rf statement is famous because
+              it will erase anything but only when you have a root access or you login as a root.and f stand for force ,r stand for recursive]
+ >* $cp [copy one file]
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*/1$ ls
+1.text
+ubuntu@DESKTOP-5REVBEP:*/1$ cp 1.text 1.text.copy
+ubuntu@DESKTOP-5REVBEP:*/1$ ls
+1.text  1.text.copy
+*********************************************************************************************************************************************************
+  >copy to another directory:-
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*/1$ ls
+1.text  1.text.copy
+ubuntu@DESKTOP-5REVBEP:*/1$ mkdir 22
+ubuntu@DESKTOP-5REVBEP:*/1$ cp 1.text 22
+ubuntu@DESKTOP-5REVBEP:*/1$ ls
+1.text  1.text.copy  22
+ubuntu@DESKTOP-5REVBEP:*/1$ cd 22
+ubuntu@DESKTOP-5REVBEP:*/1/22$ ls
+1.text 
+*********************************************************************************************************************************************************
+  >* $cp -r [To copy complete directories.]
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*$ ls
+1  dir3  piyush
+ubuntu@DESKTOP-5REVBEP:*$ cp -r 1/ dir3
+ubuntu@DESKTOP-5REVBEP:*$ ls dir3
+1
+ubuntu@DESKTOP-5REVBEP:*$ tree
+.
++-- 1
+¦   +-- 1.text
+¦   +-- 1.text.copy
++-- dir3
+¦   +-- 1
+¦       +-- 1.text
+¦       +-- 1.text.copy
++-- piyush
+    +-- 1
+        +-- 1.text
+        +-- 1.text.copy
+
+5 directories, 6 files
+*********************************************************************************************************************************************************
+ >* copy multiple files instred of copy whole directory to another , c* $cp "file_names" "direcoty_name"/]
+ >* $cp -i [To prevent cp from overwriting existing files.]
+ >* $mv "file_name" "directory_name"/ [move the file into directory]
+ >* $mv "file_name" "change_filename" [Use mv to rename a file or to move the file to another directory.]
+ >* $mv "dirctory_name" "change_dir.name" [same as changing the file name ,also can be change directory name.]
+ >* $mv -i "file_name" "change_name" [ask permission to overwrite an existing file.]
+=========================================================================================================================================================
+4.working with file contents
+ >* $head "file_name or directory_addrs_along_with_file" [to display the first ten lines of a file.]
+   >$head -n "as_above" [display the first n lines of a file.]
+   >$head -c "input_no." "as_above" [to display the first n bytes of the file]
+   >$head -q "file_name1" "file_name2" [use for looking more than 1 file data ,but result don't show the file names.]
+    >$head -v "file_name" [show data of specific file with file name.]
+   >$head -M "file_name" | "tail" -(M-N) [to print line b/w M & N]
+##EXAMLE:-
+*********************************************************************************************************************************************************  
+ >head -5 "file_name" | tail -10 []
+*********************************************************************************************************************************************************
+ >* $tail "file_name or directory_addrs_along_with_file" [command will display the last ten lines of a file.]
+   >$tail +n "file_name" [display the last n lines of a file.]
+   >$tail -c "file_name" [to display the last n bytes of the file.]
+   > in head all remaining cmnd work like almost same with collebration -q,-v, -m.
+   #use "|" pipline to made changes in existing code.
+##EXAMPLE:-
+*********************************************************************************************************************************************************  
+ $head "file" | sort
+   $head "file" | tail 
+ >* $cat "file_name" [simply use it to display a file on the screen.'cat is stand for concatenate.']
+   >$cat > "file_name.txt"
+    "XYZ"                 [Ctrl d to come out from the running process.]
+    $cat "file_name.txt"
+    "XYZ" [ use cat to create flat text files.] 
+   >$cat > "file_name.txt" <<"to end the process of writting"
+*********************************************************************************************************************************************************
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:*$ cat > cat.txt <<do {input}
+> qwerty
+> type
+> shero
+> do
+ubuntu@DESKTOP-5REVBEP:*$ cat cat.txt {output}
+qwerty
+type
+shero
+*********************************************************************************************************************************************************
+   >$cat >> "file_name" [to append the file ,not to overwrite it.]
+   >$"any_cmnd" > "file_name.txt" [to write the content of the cmnd into a txt file.]
+   >$cat "file_name" > "file_name" [cat can be used to copy files.]
+   >* $tac "file_name" [to reverse the file order up side down.]
+   >strings [display readable ascii strings found in (binary) files.]
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:~$ which ls
+/bin/ls
+ubuntu@DESKTOP-5REVBEP:~$ strings /bin/ls
+/lib64/ld-linux-x86-64.so.2
+libselinux.so.1
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+_init.....................................
+*********************************************************************************************************************************************************
+ >*$echo [basic of echo explain in exmpl.]
+##EXAMPLE:-
+*********************************************************************************************************************************************************
+ubuntu@DESKTOP-5REVBEP:~$ echo hello world
+hello world
+ubuntu@DESKTOP-5REVBEP:~$ echo "hello world"
+hello world
+ubuntu@DESKTOP-5REVBEP:~$ piyush="Anand"
+ubuntu@DESKTOP-5REVBEP:~$ echo $piyush
+Anand
+ubuntu@DESKTOP-5REVBEP:~$ a=20
+ubuntu@DESKTOP-5REVBEP:~$ echo "i got $a rupess"
+i got 20 rupess
+ubuntu@DESKTOP-5REVBEP:~$ echo -e 'piyush \anand'
+piyush nand
+ubuntu@DESKTOP-5REVBEP:~$ echo -e 'piyush \n anand'
+piyush
+ anand
+ubuntu@DESKTOP-5REVBEP:~$ echo -e 'piyush \nanand'
+piyush
+anand
+
+*********************************************************************************************************************************************************
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ **filesystem_hierarchy_standard**           														   +
++  Many Linux distributions partially follow the Filesystem Hierarchy Standard. The FHS may help make more Unix/Linux file system trees conform better in  +
++   the future.																		   +
++  FHS is available online at http://www.pathname.com/fhs/               										   +
++  hierarchy standard has been designed to be used by Unix distribution developers, package developers, and system implementers                            +
++  TO FIND ABOUT hierarchy standard ->$man hier													           +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=========================================================================================================================================================
